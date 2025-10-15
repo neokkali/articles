@@ -20,6 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="qFH1UgQsCxcsRptyv38ySF7EkmT6encpPGOnvMFiOGg"
+        />
+      </head>
       <body className={`${tajawal.className} antialiased`}>{children}</body>
     </html>
   );
