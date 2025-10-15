@@ -6,7 +6,7 @@ export default function Home() {
   const [article, setArticle] = React.useState("");
   const [separator, setSeparator] = React.useState(" . ");
   const [wordsLength, setWordsLength] = React.useState(10);
-  const [useBrackets, setUseBrackets] = React.useState(false);
+  const [useBrackets, setUseBrackets] = React.useState(true);
 
   const manageArticle = (article: string) => {
     if (!article.trim()) return "";
@@ -44,7 +44,7 @@ export default function Home() {
           className="bg-red-100 w-full p-4 rounded-lg text-right text-base md:text-lg"
         />
 
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3 text-lg">
           <label>عدد الكلمات في كل سطر:</label>
           <input
             type="number"
@@ -71,7 +71,7 @@ export default function Home() {
           </label>
         </div>
 
-        <div className="bg-gray-100 p-4 rounded-lg whitespace-pre-wrap leading-relaxed text-lg">
+        <div className="bg-gray-100 p-4 rounded-lg whitespace-pre-wrap leading-relaxed text-xl">
           {manageArticle(article)}
         </div>
       </div>
