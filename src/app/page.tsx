@@ -41,7 +41,7 @@ export default function Home() {
           onChange={(e) => setArticle(e.target.value)}
           rows={10}
           placeholder="ضع المقال هنا..."
-          className="bg-red-100 w-full p-4 rounded-lg text-right"
+          className="bg-red-100 w-full p-4 rounded-lg text-right text-base md:text-lg"
         />
 
         <div className="flex flex-wrap items-center gap-3">
@@ -67,11 +67,11 @@ export default function Home() {
               checked={useBrackets}
               onChange={(e) => setUseBrackets(e.target.checked)}
             />
-            <span>وضع أقواس [ ] عشوائية</span>
+            <span>وضع أقواس عشوائية</span>
           </label>
         </div>
 
-        <div className="bg-gray-100 p-4 rounded-lg whitespace-pre-wrap leading-relaxed">
+        <div className="bg-gray-100 p-4 rounded-lg whitespace-pre-wrap leading-relaxed text-lg">
           {manageArticle(article)}
         </div>
       </div>
