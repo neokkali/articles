@@ -8,16 +8,23 @@ const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
 });
 
+// layout.js
 export const metadata: Metadata = {
-  title: "زخرفة المقالات ✨ أداة احترافية",
+  title: "زخرفة المقالات | أداة احترافية",
   description: "زخرف نصوصك ومقالاتك العربية بسهولة واحترافية.",
-  keywords: ["زخرفة", "نصوص مزخرفة", "زخرفة المقالات", "كتابة بالعربية"],
+  keywords: [
+    "زخرفة المقالات",
+    "زخرفه المقالات",
+    "زخرفه مقالات",
+    "زخرف النصوص",
+    "كتابة مزخرفة",
+    "تزيين المقالات",
+  ],
   openGraph: {
-    title: "زخرفة المقالات ✨ أداة احترافية",
-    description: "أداة عربية لزخرفة المقالات والنصوص بسهولة واحترافية.",
-    url: "https://articles-virid.vercel.app",
+    title: "زخرفة المقالات | أداة احترافية",
+    description: "زخرف نصوصك ومقالاتك العربية بسهولة واحترافية.",
+    // url: "https://articles.ct.ws",
     siteName: "زخرفة المقالات",
-    locale: "ar",
     type: "website",
   },
 };
