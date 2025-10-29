@@ -9,8 +9,17 @@ const tajawal = Tajawal({
 });
 
 export const metadata: Metadata = {
-  title: "زخرفه المقالات",
-  description: "زخرفه المقالات للشات",
+  title: "زخرفة المقالات ✨ أداة احترافية",
+  description: "زخرف نصوصك ومقالاتك العربية بسهولة واحترافية.",
+  keywords: ["زخرفة", "نصوص مزخرفة", "زخرفة المقالات", "كتابة بالعربية"],
+  openGraph: {
+    title: "زخرفة المقالات ✨ أداة احترافية",
+    description: "أداة عربية لزخرفة المقالات والنصوص بسهولة واحترافية.",
+    url: "https://articles-virid.vercel.app",
+    siteName: "زخرفة المقالات",
+    locale: "ar",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
