@@ -5,17 +5,17 @@ import { motion } from "framer-motion";
 
 export const Footer = () => {
   return (
-    <footer className="mt-16 border-t border-gray-200/40 dark:border-gray-700/50 bg-white/70 dark:bg-gray-900/60 backdrop-blur-md">
+    <footer className="border-t border-gray-200/40 dark:border-gray-700/50 bg-white/70 dark:bg-gray-900/60 backdrop-blur-md">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-start text-gray-700 dark:text-gray-300">
         {/* النص */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           className="text-sm md:text-base"
         >
-          صُنع بحب <span className="text-blue-500">💙</span> لمحبّي المقالات ✨
-        </motion.p>
+          صنع بحب لمحبي المقالات 💙
+        </motion.div>
 
         {/* البريد */}
         <motion.a
