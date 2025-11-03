@@ -14,8 +14,7 @@ export const Footer = () => {
           transition={{ duration: 0.4 }}
           className="text-sm md:text-base"
         >
-          صُنع بحب <span className="text-blue-500">💙</span> لمحبّي الجمال
-          والزخرفة ✨
+          صُنع بحب <span className="text-blue-500">💙</span> لمحبّي المقالات ✨
         </motion.p>
 
         {/* البريد */}

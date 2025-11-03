@@ -1,8 +1,15 @@
 "use client";
 
+import Image from "next/image";
 import { ThemeSwitcher } from "./theme-swicher";
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { Reem_Kufi_Fun } from "next/font/google";
+
+const reemKufi = Reem_Kufi_Fun({
+  variable: "--font-reem-kufi",
+  weight: ["400", "600", "700"],
+  subsets: ["arabic", "latin"],
+});
 
 export const Header = () => {
   return (
@@ -13,12 +20,21 @@ export const Header = () => {
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="flex items-center gap-2 select-none"
+          className="flex items-center select-none"
         >
-          <Sparkles className="w-6 h-6 text-blue-500 dark:text-purple-400" />
-          <h1 className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-500 dark:from-blue-400 dark:to-purple-300 bg-clip-text text-transparent tracking-tight">
-            زخرفة
-          </h1>
+          <Image
+            src="/logo.png"
+            alt="زخرفة المقالات"
+            width={40}
+            height={40}
+            className="mt-1"
+            priority
+          />
+          <span
+            className={`${reemKufi.className} text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-500 dark:from-blue-400 dark:to-purple-300 bg-clip-text text-transparent tracking-tight`}
+          >
+            زخرفة المقالات
+          </span>
         </motion.div>
 
         {/* أدوات */}
