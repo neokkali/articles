@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Tajawal } from "next/font/google";
 import "./globals.css";
 
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { ThemeProvider } from "@/providers/theme-provider";
+
 const tajawal = Tajawal({
   variable: "--font-tajawal-arabic",
   weight: ["200", "300", "400", "500", "700", "800", "900"],
@@ -35,14 +39,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="ar" dir="rtl" suppressHydrationWarning>
       <head>
         <meta
           name="google-site-verification"
           content="qFH1UgQsCxcsRptyv38ySF7EkmT6encpPGOnvMFiOGg"
         />
       </head>
-      <body className={`${tajawal.className} antialiased`}>{children}</body>
+      <body className={`${tajawal.className} antialiased`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
