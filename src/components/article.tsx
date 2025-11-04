@@ -30,17 +30,7 @@ const Article = () => {
   };
 
   return (
-    <section
-      className="
-        bg-gradient-to-br 
-        from-gray-50 to-gray-200 
-        dark:from-gray-900 dark:to-gray-950 
-        text-gray-900 dark:text-gray-100 
-        flex flex-col justify-center
-        py-10 md:py-14
-        transition-colors duration-300
-      "
-    >
+    <section className="">
       <div className="max-w-7xl w-full mx-auto px-4 sm:px-6">
         {/* العنوان الرئيسي */}
         <motion.div

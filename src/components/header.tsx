@@ -31,7 +31,7 @@ export const Header = () => {
             priority
           />
           <span
-            className={`${reemKufi.className} text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-500 dark:from-blue-400 dark:to-purple-300 bg-clip-text text-transparent tracking-tight`}
+            className={`${reemKufi.className} text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-500 dark:from-blue-400 dark:to-purple-300 bg-clip-text text-transparent tracking-tight`}
           >
             زخرفة المقالات
           </span>
