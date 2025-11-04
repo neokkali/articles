@@ -2,10 +2,18 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
+
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type ObfuscationMode =
   | "between-chars"
@@ -47,6 +55,19 @@ const visibleDecorPool = [
   "ّ",
   "ٖ",
   "ٗ",
+];
+
+const separators = [
+  { label: "النقطة العادية •", value: " • " },
+  { label: "النقطة الكبيرة ●", value: " ● " },
+  { label: "قلب ♥", value: " ♥ " },
+  { label: "فاصلة ,", value: " , " },
+  { label: "فاصلة عربية ،", value: " ، " },
+  { label: "نقطة صغيرة ·", value: " · " },
+  { label: "شرطة -", value: " - " },
+  { label: "شرطة طويلة —", value: " — " },
+  { label: "موجة ~", value: " ~ " },
+  { label: "نجمة ✦", value: " ✦ " },
 ];
 
 const randomChoice = <T,>(arr: T[]) =>
@@ -235,6 +256,26 @@ const ArticleSecure: React.FC = () => {
             </Label>
           </div>
 
+          {/* Dropdown لاختيار الفاصل */}
+          <div className="flex flex-col gap-1">
+            <Label>اختر الفاصل بين الكلمات</Label>
+            <Select
+              value={separator}
+              onValueChange={(val) => setSeparator(val)}
+            >
+              <SelectTrigger className="w-full" dir="rtl">
+                <SelectValue placeholder="اختر فاصل..." />
+              </SelectTrigger>
+              <SelectContent dir="rtl">
+                {separators.map((sep) => (
+                  <SelectItem key={sep.value} value={sep.value}>
+                    {sep.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
           <div className="flex flex-col gap-1 col-span-1 sm:col-span-2">
             <Label>شدة الحماية ضد النسخ</Label>
             <div className="flex items-center gap-2">
@@ -270,7 +311,7 @@ const ArticleSecure: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex gap-2 justify-end">
+        <div className="flex flex-wrap gap-2 justify-end">
           <Button
             variant="outline"
             className="border-blue-500 text-blue-600"
