@@ -2,6 +2,10 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
 
 type ObfuscationMode =
   | "between-chars"
@@ -93,7 +97,6 @@ const obfuscateWordWithPattern = (
 
   if (word.length <= 2 && Math.random() < 0.6)
     result += randomChoice(hiddenPool);
-
   if (hasLatin && Math.random() < 0.5) return result;
 
   return result;
@@ -117,7 +120,6 @@ const ArticleSecure: React.FC = () => {
   const [separator, setSeparator] = React.useState(" • ");
   const [wordsPerLine, setWordsPerLine] = React.useState(10);
   const [useBrackets, setUseBrackets] = React.useState(true);
-
   const [protectAgainstCopy, setProtectAgainstCopy] = React.useState(false);
   const [protectIntensity, setProtectIntensity] = React.useState(0.6);
   const [decorIntensity, setDecorIntensity] = React.useState(0.18);
@@ -174,135 +176,125 @@ const ArticleSecure: React.FC = () => {
 
   return (
     <section className="p-4">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto space-y-6">
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25 }}
-          className="text-center mb-6"
+          className="text-center"
         >
-          <h1 className="text-2xl font-bold">
-            أداة زخرفة متقدّمة — حماية ضد النسخ
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text">
+            أداة زخرفة متقدمة — حماية ضد النسخ
           </h1>
           <p className="text-sm text-gray-600 mt-1">
             النصوص واضحة للعين، لكنها محمية من برامج النسخ والتنظيف الآلي.
           </p>
         </motion.div>
 
-        <div className="bg-white dark:bg-gray-900 shadow rounded-xl p-4 space-y-4">
-          <textarea
-            value={article}
-            onChange={(e) => setArticle(e.target.value)}
-            rows={6}
-            placeholder="✍️ ضع المقالة او السطور هنا..."
-            className="w-full p-3 rounded border resize-none"
-            dir="rtl"
-          />
+        <textarea
+          value={article}
+          onChange={(e) => setArticle(e.target.value)}
+          rows={6}
+          placeholder="✍️ اكتب السطور هنا..."
+          className="w-full p-3 rounded-2xl border border-gray-300 dark:border-gray-700 resize-none"
+          dir="rtl"
+        />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="flex flex-col gap-1">
+            <Label>عدد الكلمات في السطر</Label>
+            <input
+              type="number"
+              className="w-20 p-1 border rounded text-center"
+              value={wordsPerLine}
+              onChange={(e) =>
+                setWordsPerLine(Math.max(1, parseInt(e.target.value || "1")))
+              }
+            />
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Checkbox
+              checked={useBrackets}
+              onCheckedChange={(val) => setUseBrackets(!!val)}
+              id="brackets"
+            />
+            <Label htmlFor="brackets" className="cursor-pointer">
+              تفعيل الأقواس العشوائية
+            </Label>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Checkbox
+              checked={protectAgainstCopy}
+              onCheckedChange={(val) => setProtectAgainstCopy(!!val)}
+              id="protect"
+            />
+            <Label htmlFor="protect" className="cursor-pointer">
+              تفعيل حماية ذكية
+            </Label>
+          </div>
+
+          <div className="flex flex-col gap-1 col-span-1 sm:col-span-2">
+            <Label>شدة الحماية ضد النسخ</Label>
             <div className="flex items-center gap-2">
-              <label className="text-sm font-semibold">
-                عدد الكلمات في السطر
-              </label>
-              <input
-                type="number"
-                className="w-20 p-1 border rounded text-center"
-                value={wordsPerLine}
-                onChange={(e) =>
-                  setWordsPerLine(Math.max(1, parseInt(e.target.value || "1")))
-                }
+              <Slider
+                value={[protectIntensity]}
+                onValueChange={(val) => setProtectIntensity(val[0])}
+                step={0.05}
+                min={0}
+                max={1}
+                className="flex-1"
               />
-            </div>
-
-            <div className="flex items-center justify-end gap-2">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={useBrackets}
-                  onChange={(e) => setUseBrackets(e.target.checked)}
-                  className="w-5 h-5"
-                />
-                <span className="text-sm">تفعيل الأقواس العشوائية</span>
-              </label>
-            </div>
-
-            <div className="col-span-1 sm:col-span-2">
-              <label className="text-sm font-semibold block">
-                حماية النصوص
-              </label>
-              <div className="flex items-center gap-3 mt-2">
-                <label className="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    checked={protectAgainstCopy}
-                    onChange={(e) => setProtectAgainstCopy(e.target.checked)}
-                    className="w-5 h-5"
-                  />
-                  تفعيل حماية ذكية
-                </label>
-                <button
-                  onClick={regenerate}
-                  className="px-3 py-1 rounded border"
-                >
-                  إعادة توليد الرموز
-                </button>
-                <button
-                  onClick={handleCopyObfuscated}
-                  className="px-3 py-1 rounded bg-blue-600 text-white"
-                >
-                  نسخ المزخرف
-                </button>
-              </div>
-            </div>
-
-            <div className="col-span-1 sm:col-span-2">
-              <div className="flex items-center gap-2">
-                <label className="text-sm">قوة الحماية</label>
-                <input
-                  type="range"
-                  min={0}
-                  max={1}
-                  step={0.05}
-                  value={protectIntensity}
-                  onChange={(e) =>
-                    setProtectIntensity(parseFloat(e.target.value))
-                  }
-                  className="flex-1"
-                />
-                <span className="text-xs w-12 text-right">
-                  {Math.round(protectIntensity * 100)}%
-                </span>
-              </div>
-              <div className="flex items-center gap-2 mt-2">
-                <label className="text-sm">الزخارف الإضافية للنص</label>
-                <input
-                  type="range"
-                  min={0}
-                  max={0.5}
-                  step={0.02}
-                  value={decorIntensity}
-                  onChange={(e) =>
-                    setDecorIntensity(parseFloat(e.target.value))
-                  }
-                  className="flex-1"
-                />
-                <span className="text-xs w-12 text-right">
-                  {Math.round(decorIntensity * 100)}%
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className="bg-gray-50 dark:bg-gray-800 border rounded p-3 text-lg whitespace-pre-wrap leading-relaxed"
-            style={{ fontFamily: "inherit" }}
-          >
-            {result || (
-              <span className="text-gray-400">
-                ستظهر النتيجة هنا بعد إدخال نص والضغط على توليد.
+              <span className="text-xs w-12 text-right">
+                {Math.round(protectIntensity * 100)}%
               </span>
-            )}
+            </div>
           </div>
+
+          <div className="flex flex-col gap-1 col-span-1 sm:col-span-2">
+            <Label>الزخارف الإضافية للنص</Label>
+            <div className="flex items-center gap-2">
+              <Slider
+                value={[decorIntensity]}
+                onValueChange={(val) => setDecorIntensity(val[0])}
+                step={0.02}
+                min={0}
+                max={0.5}
+                className="flex-1"
+              />
+              <span className="text-xs w-12 text-right">
+                {Math.round(decorIntensity * 100)}%
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex gap-2 justify-end">
+          <Button
+            variant="outline"
+            className="border-blue-500 text-blue-600"
+            onClick={regenerate}
+          >
+            إعادة توليد الرموز
+          </Button>
+          <Button
+            className="bg-blue-500 text-white hover:bg-blue-600"
+            onClick={handleCopyObfuscated}
+          >
+            نسخ المزخرف
+          </Button>
+        </div>
+
+        <div
+          className="bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-2xl p-4 text-lg whitespace-pre-wrap leading-relaxed"
+          style={{ fontFamily: "inherit" }}
+        >
+          {result || (
+            <span className="text-gray-400">
+              ستظهر النتيجة هنا بعد إدخال نص والضغط على توليد.
+            </span>
+          )}
         </div>
       </div>
     </section>
