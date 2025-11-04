@@ -194,7 +194,7 @@ const ArticleSecure: React.FC = () => {
             value={article}
             onChange={(e) => setArticle(e.target.value)}
             rows={6}
-            placeholder="✍️ اكتب السطور هنا..."
+            placeholder="✍️ ضع المقالة او السطور هنا..."
             className="w-full p-3 rounded border resize-none"
             dir="rtl"
           />
