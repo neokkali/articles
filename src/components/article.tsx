@@ -58,7 +58,7 @@ const visibleDecorPool = [
 ];
 
 const separators = [
-  { label: "نقطهة", value: " . " },
+  { label: "نقطة", value: " . " },
   { label: "النقطة العادية •", value: " • " },
   { label: "النقطة الكبيرة ●", value: " ● " },
   { label: "قلب ♥", value: " ♥ " },
