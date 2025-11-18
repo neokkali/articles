@@ -58,6 +58,7 @@ const visibleDecorPool = [
 ];
 
 const separators = [
+  { label: "نقطهة", value: " . " },
   { label: "النقطة العادية •", value: " • " },
   { label: "النقطة الكبيرة ●", value: " ● " },
   { label: "قلب ♥", value: " ♥ " },
@@ -138,7 +139,7 @@ const obfuscateWordsArray = (
 
 const ArticleSecure: React.FC = () => {
   const [article, setArticle] = React.useState("");
-  const [separator, setSeparator] = React.useState(" • ");
+  const [separator, setSeparator] = React.useState(" . ");
   const [wordsPerLine, setWordsPerLine] = React.useState(10);
   const [useBrackets, setUseBrackets] = React.useState(true);
   const [protectAgainstCopy, setProtectAgainstCopy] = React.useState(false);
